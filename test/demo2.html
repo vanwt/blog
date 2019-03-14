@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <title>首页</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" media="screen">
+    <style>
+        .post{
+    		margin-bottom: 10px;
+    	}
+    </style>
+</head>
+
+<body>
+    <div class="container head">
+        <!--导航栏 -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">首页</a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">标题1</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">标题2</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">标题3</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input type="sezrch" class="form-control mr-sm-2" placeholder="站内搜索" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">搜索</button>
+                </form>
+            </div>
+        </nav>
+        <div class="jumbotron">
+            <h1 class="display-4">Blogs</h1>
+            <p class="lead">基于Django的多人博客</p>
+        </div>
+    </div>
+    <!--内容 -->
+    <div class="container main">
+        <div class="row">
+            <div class="col-9 post-list">
+                <div class="card post">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="#">这里是标题</a></h5>
+                        <span class="card-link">作者: <a href="#">王通</a></span>
+                        <span class="card-link">分类: <a href="#">python</a></span>
+                        <span class="card-link">标签
+							<a href="#">Python</a>
+							<a href="#">Django</a>
+							<a href="#">经验</a>
+						</span>
+                        <p class="card-text">Some quick example text to build on the card title and make up the card's content <a href="#">完整内容</a></p>
+                    </div>
+                </div>
+                <div class="card post">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="#">这里是标题</a></h5>
+                        <span class="card-link">作者: <a href="#">王通</a></span>
+                        <span class="card-link">分类: <a href="#">python</a></span>
+                        <span class="card-link">标签
+							<a href="#">Python</a>
+							<a href="#">Django</a>
+							<a href="#">经验</a>
+						</span>
+                        <p class="card-text">Some quick example text to build on the card title and make up the card's content <a href="#">完整内容</a></p>
+                    </div>
+                </div>
+                <div class="card post">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="#">这里是标题</a></h5>
+                        <span class="card-link">作者: <a href="#">王通</a></span>
+                        <span class="card-link">分类: <a href="#">python</a></span>
+                        <span class="card-link">标签
+							<a href="#">Python</a>
+							<a href="#">Django</a>
+							<a href="#">经验</a>
+						</span>
+                        <p class="card-text">Some quick example text to build on the card title and make up the card's content <a href="#">完整内容</a></p>
+                    </div>
+                </div>
+                <div class="card post">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="#">这里是标题</a></h5>
+                        <span class="card-link">作者: <a href="#">王通</a></span>
+                        <span class="card-link">分类: <a href="#">python</a></span>
+                        <span class="card-link">标签
+							<a href="#">Python</a>
+							<a href="#">Django</a>
+							<a href="#">经验</a>
+						</span>
+                        <p class="card-text">Some quick example text to build on the card title and make up the card's content <a href="#">完整内容</a></p>
+                    </div>
+                </div>
+                <!-- 以上内容完毕 -->
+                <a href="?page={{page_obj.previous_page_number}}">上一页</a>
+                Page 1 of 1.
+                <a href="?page={{ page_obj.next_page_number }}">下一页</a>
+            </div>
+            <div class="col-3">
+                <div class="card sidebar">
+                    <div class="card-body">
+                        <h4 class="card-title">关于作者</h4>
+                        <img src="C:\Users\Python\Desktop\素材\1.png" class="card-img" alt="图裂了">
+                        <p>
+                            网名:tong 没有python经验
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <hr>
+            <nav class="nav category">
+                <a href="#" class="nav-link">读书</a>
+                <a href="#" class="nav-link">编程</a>
+                <a href="#" class="nav-link">玩</a>
+            </nav>
+        </div>
+        <div class="container power">
+            <span class="text-muted">Power By Blogs@Tong</span>
+        </div>
+    </footer>
+</body>
+
+</html>

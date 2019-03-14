@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}博客首页{% endblock %}</title>
+</head>
+<body>
+
+<div>
+    <p>顶部分类</p>
+    {% for cate in navs %}
+    <a href="{% url 'category-list' cate.id %}">{{cate.name}}</a>
+    {% endfor %}
+</div>
+<hr>
+{% block main %}
+{% endblock %}
+<hr>
+
+<div>
+    <p>底部分类</p>
+    {% for cate in categories %}
+    <a href="{% url 'category-list' cate.id %}">{{cate.name}}</a>
+    {% endfor %}
+</div>
+<hr>
+<div style="float: right;margin: 0 150px 0 0;">
+    <p>侧边栏展示</p>
+    {% for side in sidebars %}
+        <h4>{{side.title}}</h4>
+        {{side.content_html}}
+    {% endfor %}
+</div>
+
+</body>
+</html>

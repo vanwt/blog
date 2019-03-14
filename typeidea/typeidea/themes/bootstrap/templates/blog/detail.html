@@ -1,0 +1,19 @@
+{% extends './base.html'%}
+{% load comment_block %}
+{% block title %}详细内容{% endblock %}
+{% block main %}
+{% if post %}
+<h2>{{post.title}}</h2>
+
+<h4>博客内容</h4>
+<div>
+    分类: {{post.category}}<br>
+    摘要: {{post.desc}}<br>
+    作者: {{post.owner.username}}<br>
+    内容:
+    <br>
+    <p>{{post.content}}</p>
+</div>
+{% comment_block request.path %}
+{% endif %}
+{% endblock %}

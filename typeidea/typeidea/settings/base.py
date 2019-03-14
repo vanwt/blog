@@ -31,9 +31,10 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'typeidea',
     'blog',
     'config',
-    'commit',
+    'comment',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -54,11 +55,11 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'typeidea.urls'
-
+THEME = 'bootstrap'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,'themes',THEME,'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -102,7 +103,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'zh-hans'
 
-TIME_ZONE = 'Asia/Hans'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
@@ -114,4 +115,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/static/'#配置起始路径
+STATIC_ROOT = '/tmp/static'#用来配置部署后的静态资源路径
+STATICFILES_DIRS = [os.path.join(BASE_DIR,'themes',THEME,"static")]

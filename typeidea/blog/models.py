@@ -23,7 +23,23 @@ class Category(models.Model):
     class Meta:
         db_table = 'category'
         verbose_name = verbose_name_plural = '分类'
+    def __str__(self):
+        return self.name
+    @classmethod
+    def get_navs(cls):
+        categories = Category.objects.filter(status=cls.STATUS_NORMAL)
+        nav_category = []
+        normal_category = []
+        for cate in categories:
+            if cate.is_nav:
+                nav_category.append(cate)
+            else:
+                normal_category.append(cate)
 
+        return {
+            'navs':nav_category,
+            'categories':normal_category
+        }
 #标签表
 class Tag(models.Model):
     STATUS_NORMAL = 1
@@ -45,6 +61,8 @@ class Tag(models.Model):
     class Meta:
         db_table = 'tag'
         verbose_name = verbose_name_plural = '标签'
+    def __str__(self):
+        return self.name
 #文章
 class Post(models.Model):
     STATUS_NORMAL = 1
@@ -66,7 +84,45 @@ class Post(models.Model):
     owner = models.ForeignKey(User,verbose_name='作者')
     created_time = models.DateTimeField(auto_now_add=True,verbose_name='创建时间')
 
+    #阅读量,访问量
+    pv = models.PositiveIntegerField(default=0)
+    uv = models.PositiveIntegerField(default=0)
+
     class Meta:
         db_table = 'post'
         verbose_name = verbose_name_plural = '文章'
         ordering = ['-id']#根据ID降序排列
+    #自定义一个查询标签的方法
+    @staticmethod
+    def get_by_tag(tag_id):
+        try:
+            tag = Tag.objects.get(id=tag_id)
+        except Tag.DoesNotExist:
+            tag = None
+            post_list= []
+        else:
+            #解决了n+1问题，查询所有的文章同时把所有的 owner category查询出来
+            #post_set 是一对多 django自动创建的函数
+            post_list = tag.post_set.filter(status=Post.STATUS_NORMAL).select_related('category','owner')
+        return post_list,tag
+    @staticmethod
+    def get_by_category(category_id):
+        try:
+            category = Category.objects.get(id=category_id)
+        except Category.DoesNotExist:
+            category = None
+            post_list = []
+        else:
+            # post_set 是django 一对多映射自动生成的一个参数
+            post_list = category.post_set.filter(status = Post.STATUS_NORMAL).select_related('owner')
+            print(post_list)
+
+        return post_list,category
+
+    @classmethod
+    def latest_posts(cls):#查询出所有是状态正确的博客
+        return cls.objects.filter(status = cls.STATUS_NORMAL)
+
+    @classmethod
+    def hot_post(cls):
+        return cls.object.filter(status=cls.STATUS_NORMAL).order_by('-pv')

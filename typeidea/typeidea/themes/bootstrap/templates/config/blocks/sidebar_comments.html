@@ -1,0 +1,8 @@
+<ul>
+    {% for comment in comments %}
+    <li style="list-style: none">
+        <a style="color: black;margin-left: -30px" href="{{ comment.target }}">{{comment.nickname}}:{{comment.content}}</a>
+
+    </li>
+    {% endfor %}
+</ul>
